@@ -1,20 +1,41 @@
-import React from 'react';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import React, { Component } from 'react';
+import Characters from './Characters';
+import axios from 'axios';
 
-const CharacterList = (props) => {
-    return(
-      <div>
-      <Card>
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-    </div>
-    );
+
+class CharacterList extends Component {
+  constructor(){
+    super();
+    this.state = {
+        items: [],
+    }
 }
+
+componentDidMount(){
+    axios.get('https://rickandmortyapi.com/api/character/?page=1')
+    .then(res =>{
+        const characterData = res.data.results;
+        this.setState({
+           items: characterData,
+        })
+      }).catch(console.log('error'))
+}
+  render(){
+    const { items } = this.state;
+    console.log(items);
+    return(
+    <div>
+    { 
+      items.map(i => {
+        return <Characters key = {i.id} id = {i.id} name={i.name} image = {i.image} status = {i.status}/>
+      })
+    } 
+    </div>
+     );
+  }
+}
+        
+
+
+    
  export default CharacterList;
