@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Characters from './Characters';
 import axios from 'axios';
+import Details from './Details';
 
 
 class CharacterList extends Component {
@@ -27,15 +28,32 @@ componentDidMount(){
     <div>
     { 
       items.map(i => {
-        return <Characters key = {i.id} id = {i.id} name={i.name} image = {i.image} status = {i.status}/>
+        return (
+          <Fragment>
+        <Characters 
+        key = {i.id} 
+        id = {i.id} 
+        name = {i.name} 
+        image = {i.image} 
+        status = {i.status}/>
+        <Details 
+        key = {i.id} 
+        id = {i.id} 
+        name={i.name} 
+        image = {i.image} 
+        status = {i.status}
+        species = {i.species}
+        tipo = {i.type}
+        gender= {i.gender}
+        origin= {i.origin.name}
+        />
+        </Fragment>
+        );
       })
     } 
     </div>
      );
   }
 }
-        
 
-
-    
  export default CharacterList;

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-//import CharacterList from './CharacterList';
 import { Card, CardImg, CardText, CardBody,
-    CardTitle, Button } from 'reactstrap';
+    CardTitle, Button, Container, Row, Col } from 'reactstrap';
 
 const Characters = (props) => {
 
@@ -11,20 +9,21 @@ const Characters = (props) => {
         let statusLife;
         props.status !== "Alive" ? statusLife = "1": statusLife = "0"
         return(
-
-          <Card>
-            <CardImg style={{filter: "grayscale("+statusLife+")"}} top width="50%" src={props.image} alt="Card image cap" />
-              <CardBody>
-                <CardTitle>{props.name}</CardTitle>
-                    <CardText>ID: {props.id}</CardText>
-                    <Link to = { '/characterList/'+props.id} ><Button color="success" >See more</Button></Link>
-                </CardBody>
+         <Container>  
+             <Row> 
+                 <Col lg={12} md={5} xs ={12}>
+                    <Card body outline color="primary">
+                        <CardImg style={{filter: "grayscale("+statusLife+")"}} top width="50%" src={props.image} alt="Card image cap" />
+                          <CardBody>
+                            <CardTitle>{props.name}</CardTitle>
+                              <CardText>ID: {props.id}</CardText>
+                                <Link to = { '/details/'+props.id} ><Button color="success" >See more</Button></Link>
+                          </CardBody>
                     </Card>
-                )
-       /* return(
-            <CharacterList characterdata={characterData} />
-        );
-        */
+                 </Col>
+            </Row>
+        </Container>
+                )    
 }
 
 export default Characters;
