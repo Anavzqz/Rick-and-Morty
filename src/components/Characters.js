@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Button, Container, Row, Col } from 'reactstrap';
 
@@ -17,7 +16,7 @@ const Characters = (props) => {
                           <CardBody>
                             <CardTitle>{props.name}</CardTitle>
                               <CardText>ID: {props.id}</CardText>
-                                <Link to = { '/details/'+props.id} ><Button color="success" >See more</Button></Link>
+                                <Button color="success" >See more</Button>
                           </CardBody>
                     </Card>
                  </Col>
